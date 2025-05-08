@@ -85,3 +85,7 @@ Ahora me dispongo a mostrar las fases por las que pasa el robot a la hora de cog
 ![Movimiento fase 2](images/take_cube_2.png)
 ![Movimiento fase 3](images/take_cube_3.png)
 ![Movimiento fase 4](images/take_cube_4.png)
+
+Aqui muestro una imagen de como se ven ambas camaras en el robot:
+
+![vision camara](images/show_cameras.png)
