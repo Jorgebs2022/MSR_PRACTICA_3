@@ -106,3 +106,5 @@ Y este es el visual:
 Esta imagen es con los sliders de la parte A:
 
 ![vision sliders](images/sliders.png)
+
+![vision sliders](images/sliders_movidas.png)
