@@ -92,3 +92,13 @@ Ahora me dispongo a mostrar las fases por las que pasa el robot a la hora de cog
 Aqui muestro una imagen de como se ven ambas camaras en el robot:
 
 ![vision camara](images/show_cameras.png)
+
+### vision del robot en rviz con tf:
+
+Esta es la imagen del vehiculo con sus tf:
+
+![vision tf](images/tf.png)
+
+Y este es el visual:
+
+![vision visual](images/visual.png)
