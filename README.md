@@ -102,3 +102,7 @@ Esta es la imagen del vehiculo con sus tf:
 Y este es el visual:
 
 ![vision visual](images/visual.png)
+
+Esta imagen es con los sliders de la parte A:
+
+![vision sliders](images/sliders.png)
