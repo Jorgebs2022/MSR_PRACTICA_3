@@ -61,3 +61,27 @@
     La última parte del gráfico muestra una reducción casi completa del gasto, indicando que el brazo ha completado su tarea.
 
     ![Gráfico de gasto](images/graf_gasto_tiempo.png)
+
+## Planes de SCARA y gripper:
+
+Estos son los planes que he prohramado a mi SCARA y gripper para realizar todas las acciones correctamente:
+
+- El gripper tiene dos planes a ejecutar:
+    - open: Abre el gripper
+    - close: Cierra el gripper
+
+- El scara tiene 4 movimientos a seguir:
+    - hold: Mantiene el brazo en posicion inicial
+    - take: El brazo baja para coger el cubo
+    - lobby: El brazo se coloca en la parte de atrs del coche
+    - deposit: EL brazo coloca el cubo en el vehiculo de forma precisa
+
+### Accion del robot:
+
+Ahora me dispongo a mostrar las fases por las que pasa el robot a la hora de coger el cubo:
+
+
+![Movimiento fase 1](images/take_cube_1.png)
+![Movimiento fase 2](images/take_cube_2.png)
+![Movimiento fase 3](images/take_cube_3.png)
+![Movimiento fase 4](images/take_cube_4.png)
