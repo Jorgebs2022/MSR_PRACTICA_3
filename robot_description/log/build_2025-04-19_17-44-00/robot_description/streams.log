@@ -1,0 +1,52 @@
+[0.015s] Invoking command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/jorgebs/Desktop/MSR/robot_description -DCMAKE_INSTALL_PREFIX=/home/jorgebs/Desktop/MSR/robot_description/install/robot_description
+[0.139s] -- The C compiler identification is GNU 13.3.0
+[0.234s] -- The CXX compiler identification is GNU 13.3.0
+[0.258s] -- Detecting C compiler ABI info
+[0.378s] -- Detecting C compiler ABI info - done
+[0.386s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.387s] -- Detecting C compile features
+[0.387s] -- Detecting C compile features - done
+[0.400s] -- Detecting CXX compiler ABI info
+[0.525s] -- Detecting CXX compiler ABI info - done
+[0.534s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.535s] -- Detecting CXX compile features
+[0.535s] -- Detecting CXX compile features - done
+[0.551s] -- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.773s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.994s] -- Found xacro: 2.0.11 (/opt/ros/jazzy/share/xacro/cmake)
+[1.069s] -- Configuring done (1.0s)
+[1.073s] -- Generating done (0.0s)
+[1.074s] -- Build files have been written to: /home/jorgebs/Desktop/MSR/robot_description/build/robot_description
+[1.078s] Invoked command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/jorgebs/Desktop/MSR/robot_description -DCMAKE_INSTALL_PREFIX=/home/jorgebs/Desktop/MSR/robot_description/install/robot_description
+[1.080s] Invoking command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/jorgebs/Desktop/MSR/robot_description/build/robot_description -- -j16 -l16
+[1.140s] Invoked command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/jorgebs/Desktop/MSR/robot_description/build/robot_description -- -j16 -l16
+[1.155s] Invoking command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/jorgebs/Desktop/MSR/robot_description/build/robot_description
+[1.168s] -- Install configuration: ""
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/launch
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/launch/robot_state_publisher.launch.py
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/meshes
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/meshes/dae
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/urdf
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/urdf/base
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/urdf/base/robot_base.urdf.xacro
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/urdf/wheels
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/rviz
+[1.169s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/robots
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/robots/robot.urdf.xacro
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/config
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/ament_index/resource_index/package_run_dependencies/robot_description
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/ament_index/resource_index/parent_prefix_path/robot_description
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/environment/ament_prefix_path.sh
+[1.170s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/environment/ament_prefix_path.dsv
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/environment/path.sh
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/environment/path.dsv
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/local_setup.bash
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/local_setup.sh
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/local_setup.zsh
+[1.171s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/local_setup.dsv
+[1.172s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/package.dsv
+[1.172s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/ament_index/resource_index/packages/robot_description
+[1.172s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/cmake/robot_descriptionConfig.cmake
+[1.172s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/cmake/robot_descriptionConfig-version.cmake
+[1.173s] -- Installing: /home/jorgebs/Desktop/MSR/robot_description/install/robot_description/share/robot_description/package.xml
+[1.174s] Invoked command in '/home/jorgebs/Desktop/MSR/robot_description/build/robot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/jorgebs/Desktop/MSR/robot_description/build/robot_description

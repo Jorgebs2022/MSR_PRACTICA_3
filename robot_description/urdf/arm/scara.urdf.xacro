@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <xacro:macro name="arm_scara" params="prefix">
+
+    <link name="aa_base_arm_iIcosphere_link">
+        <collision name="aa_base_arm_iIcosphere_collision">
+            <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.14253 -0.16660"/>
+            <geometry>
+              <mesh filename="package://rover_description/meshes/dae/Icosphere.dae" scale="0.26287 0.25000 0.25000"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+          <inertia ixx="0.22862" ixy="0.00000" ixz="0.00000" iyy="0.24069" iyz="0.00000" izz="0.24069"/>
+          <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.14253 -0.16660"/>
+          <mass value="10.00000"/>
+        </inertial>
+
+        <visual name="aa_base_arm_iIcosphere">
+          <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.00000 -0.14253 -0.16660"/>
+          <geometry>
+            <mesh filename="package://rover_description/meshes/dae/Icosphere.dae" scale="0.26287 0.25000 0.25000"/>
+          </geometry>
+        </visual>
+
+    </link>
+
+
+    <joint name="aa_base_arm_iIcosphere_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.01357 -0.35747 0.68988"/>
+        <parent link="base_link"/>
+        <child link="aa_base_arm_iIcosphere_link"/>
+    </joint>
+
+    <link name="arm1_fixed_link">
+        <collision name="arm1_fixed_collision">
+            <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 -0.07682"/>
+            <geometry>
+              <cylinder radius="0.1" length="1.0"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+          <inertia ixx="0.42917" ixy="-0.00000" ixz="0.00000" iyy="0.42917" iyz="-0.00000" izz="0.02500"/>
+          <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.07682"/>
+          <mass value="5.00000"/>
+        </inertial>
+         <visual name="arm1_fixed">
+          <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 0.00000 -0.07682"/>
+          <material name="Material.007"/>
+          <geometry>
+            <cylinder radius="0.10000" length="1.00000"/>
+          </geometry>
+        </visual>
+
+    </link>
+
+
+    <joint name="arm1_fixed_link_joint" type="fixed">
+        <origin rpy="-1.57080 0.00000 0.00000" xyz="-0.00000 -0.06571 0.52174"/>
+        <parent link="aa_base_arm_iIcosphere_link"/>
+        <child link="arm1_fixed_link"/>
+    </joint>
+
+
+    
+  <xacro:macro name="arm_sphere_link" params="name rpy xyz">
+    <link name="${name}_link">
+      <collision name="Icosphere.001_collision">
+        <origin rpy="${rpy}" xyz="${xyz}"/>
+        <geometry>
+          <mesh filename="package://rover_description/meshes/dae/Icosphere.001.dae" scale="0.10515 0.10000 0.10000"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="${rpy}" xyz="${xyz}"/>
+        <geometry>
+          <mesh filename="package://rover_description/meshes/dae/Icosphere.001.dae" scale="0.10515 0.10000 0.10000"/>
+        </geometry>
+        <material name="gray">
+          <color rgba="0.6 0.6 0.6 1.0"/>
+        </material>
+      </visual>
+     <inertial>
+      <inertia ixx="0.00366" ixy="0.00000" ixz="0.00000" iyy="0.00385" iyz="0.00000" izz="0.00385"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.04529"/>
+      <mass value="1.00000"/>
+    </inertial>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="arm_sphere_link_joint" params="name xyz rpy parent_link low up ef vel">
+    <joint name="${name}_link_joint" type="revolute">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent_link}"/>
+      <child link="${name}_link"/>
+      <limit lower="${low}" upper="${up}" effort="${ef}" velocity="${vel}"/>
+    </joint>
+  </xacro:macro>
+
+  
+  <xacro:macro name="box_arm_link" params="name size_x size_y size_z mass">
+
+            <link name="${name}_link">
+                <visual>
+                    <origin rpy="${PI/2} 0 ${PI/2}" xyz="0 0 0"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                    <material name="Material.007"/>
+                </visual>
+
+                <collision>
+                    <origin rpy="${PI/2} 0 ${PI/2}" xyz="0 0 0"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                </collision>
+
+                <inertial>
+                  <mass value="${mass}"/>
+                  <origin xyz="0 0 0" rpy="0 0 0"/>
+                  <inertia ixx="0.00104" ixy="0.00000" ixz="0.00000" iyy="0.08354" iyz="0.00000" izz="0.08417"/>
+                </inertial>
+            </link>
+        </xacro:macro>
+
+        <xacro:macro name="box_arm_link_joint" params="name xyz rpy parent_link">
+        <joint name="${name}_link_joint" type="fixed">
+            <origin rpy="${rpy}" xyz="${xyz}"/>
+            <parent link="${parent_link}"/>
+            <child link="${name}_link"/>
+        </joint>
+        </xacro:macro>
+
+        <xacro:arm_sphere_link name="arm_sphere_1" rpy="0 0 0" xyz="0.00000 -0.00000 -0"/>
+        <xacro:arm_sphere_link_joint name="arm_sphere_1" xyz="0.00000 -0.54529 -0.07682" rpy="0 0.00000 ${-PI/2}" parent_link="arm1_fixed_link" up="3.14000" low="-3.14000" ef="1000.00000" vel="100.00000"/>
+
+        <xacro:box_arm_link name="arm1" size_x="1" size_y="0.1" size_z="0.05" mass="1"/>
+        <xacro:box_arm_link_joint name="arm1" xyz="0 -0.54824 -0.01015" rpy="0 0 0" parent_link="arm_sphere_1_link"/>
+
+        <xacro:arm_sphere_link name="arm_sphere_2" rpy="0 0 0" xyz="0.00000 0.00000 -0"/>
+        <xacro:arm_sphere_link_joint name="arm_sphere_2" xyz="0.09619 -0.49232 0" rpy="0.00000 0.00000 0.00000" parent_link="arm1_link" up="2.50000" low="-2.50000" ef="1000.00000" vel="100.00000"/>
+
+        <xacro:box_arm_link name="arm2" size_x="1" size_y="0.1" size_z="0.05" mass="1"/>
+        <xacro:box_arm_link_joint name="arm2" xyz="0 -0.53697 -0.02327" rpy="0 0 0" parent_link="arm_sphere_2_link"/>
+
+        <link name="arm_sphere_3_link">
+          <collision name="arm_sphere_3_collision">
+              <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.08417"/>
+              <geometry>
+                <mesh filename="package://rover_description/meshes/dae/Icosphere.dae" scale="0.10515 0.10000 0.10000"/>
+              </geometry>
+          </collision>
+
+          <inertial>
+            <inertia ixx="0.22862" ixy="0.00000" ixz="0.00000" iyy="0.24069" iyz="0.00000" izz="0.24069"/>
+            <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.14253 -0.16660"/>
+            <mass value="10.00000"/>
+          </inertial>
+
+          <visual name="arm_sphere_3">
+            <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.08417"/>
+            <geometry>
+              <mesh filename="package://rover_description/meshes/dae/Icosphere.dae" scale="0.10515 0.10000 0.10000"/>
+            </geometry>
+          </visual>
+
+      </link>
+
+      <joint name="arm_sphere_3_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 -0.42599 0.08690"/>
+        <parent link="arm2_link"/>
+        <child link="arm_sphere_3_link"/>
+    </joint>
+
+    <link name="extension_cylinder_link">
+        <collision name="extension_cylinder_collision">
+            <origin rpy="0.00000 ${PI/2} -0.00000" xyz="0.00000 0.00000 0.00000"/>
+            <geometry>
+              <cylinder radius="0.05000" length="3"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+          <inertia ixx="3.75313" ixy="0.00000" ixz="0.00000" iyy="3.75313" iyz="-0.00000" izz="0.00625"/>
+          <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+          <mass value="5.00000"/>
+        </inertial>
+        <visual name="extension_cylinder">
+          <origin rpy="0.00000 ${PI/2} -0.00000" xyz="0.00000 0.00000 0.00000"/>
+          <material name="Material.007"/>
+          <geometry>
+            <cylinder radius="0.05000" length="3.00000"/>
+          </geometry>
+        </visual>
+
+    </link>
+
+
+    <joint name="extension_cylinder_link_joint" type="prismatic">
+        <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00000 -0.00000 -0.08417"/>
+        <parent link="arm_sphere_3_link"/>
+        <child link="extension_cylinder_link"/>
+        <limit lower="-1.20000" upper="1.20000" effort="1000.00000" velocity="100.00000"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>
+
+
+

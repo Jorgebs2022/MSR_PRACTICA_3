@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="rover">
+
+  <!-- Includes de componentes -->
+
+  <xacro:include filename="$(find rover_description)/urdf/base/robot_base.urdf.xacro"/>
+  <xacro:include filename="$(find rover_description)/urdf/wheels/rover_wheel.urdf.xacro"/>
+  <xacro:include filename="$(find rover_description)/urdf/arm/scara.urdf.xacro"/>
+  <xacro:include filename="$(find rover_description)/urdf/arm/gripper.urdf.xacro"/>
+  <xacro:include filename="$(find rover_description)/urdf/sensors/camera.urdf.xacro"/>
+  <xacro:include filename="$(find rover_description)/urdf/sensors/imu_sensor.urdf.xacro"/>
+
+
+
+  <!-- Propiedades comunes -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <!-- Argumentos -->
+  <xacro:arg name="robot_ns" default=""/>
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="config_controllers" default="$(find rover_description)/config/rover_controllers.yaml"/>
+  <xacro:arg name="update_rate" default="100"/>
+
+  <!-- Base del robot (debe contener base_footprint -> base_link) -->
+  <xacro:robot_base prefix="$(arg prefix)"/>
+
+  <xacro:rover_wheel prefix="$(arg prefix)"/>
+
+  <xacro:arm_scara prefix="$(arg prefix)"/>
+
+  <xacro:arm_gripper prefix="$(arg prefix)"/>
+
+  <xacro:rover_cameras prefix="$(arg prefix)"/>
+
+  <xacro:rover_imu_sensor prefix="$(arg prefix)"/>
+
+  <!-- Gazebo ROS control plugins -->
+  <xacro:include filename="$(find rover_description)/urdf/ros2_control.urdf.xacro"/>
+  <xacro:arg name="config_controllers" default="$(find rover_description)/config/rover_controllers.yaml"/>
+  <xacro:arg name="update_rate" default="20"/>
+  <xacro:ros2_control/>
+
+  <!-- Control ROS2 con plugins Gazebo -->
+  <!--<xacro:ros2_control/> -->
+
+</robot>

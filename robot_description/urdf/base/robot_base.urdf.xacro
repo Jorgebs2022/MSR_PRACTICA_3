@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 1.0.1 "Capricious Choutengan" -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="robot_base" params="prefix">
+
+        <xacro:property name="PI" value="3.1415926535897931"/>
+
+        <!-- base_footprint is the root link -->
+        <link name="base_footprint">
+            <origin rpy="0.00000 0.00000 0.00000" xyz="0 0 0"/>
+        </link>
+
+
+        <link name="base_link">
+            
+            <collision name="center_collision">
+                <origin rpy="0.00000 0.00000 0.00000" xyz="0.00036 -0.48747 0.03518"/>
+                <geometry>
+                <box size="1.66000 1.20000 0.69949"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="20.00000"/>
+                <inertia 
+                ixx="5.38119" ixy="0.00000" ixz="-0.00000" 
+                iyy="3.21104" iyz="-0.00000" 
+                izz="6.96127"/>
+            </inertial>
+
+            <visual name="center">
+                <origin rpy="0.00000 0.00000 0.00000" xyz="0.00036 -0.48747 0.03518"/>
+                <geometry>
+                    <box size="1.66 1.2 0.699491"/>
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.6 0.6 0.6 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+
+        <joint name="Center_joint" type="fixed">
+            <origin rpy="0 0 0" xyz="0.00245 -1.84494 1.1379"/>
+            <parent link="base_footprint"/>
+            <child link="base_link"/>
+        </joint>
+
+
+        <link name="base_arm_link">
+            <collision name="base_arm_collision">
+                <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0 0.00000"/>
+                <geometry>
+                <box size="0.50000 0.50000 0.10000"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <inertia ixx="0.10833" ixy="0.00000" ixz="0.00000" iyy="0.10833" iyz="0.00000" izz="0.20833"/>
+                <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0 0.00000"/>
+                <mass value="5.00000"/>
+            </inertial>
+            <visual name="base_arm">
+                <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0 0.00000"/>
+                <geometry>
+                    <box size="0.50000 0.50000 0.10000"/>
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.6 0.6 0.6 1.0"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="base_arm_link_joint" type="fixed">
+            <origin rpy="0.00000 0.00000 1.57080" xyz="-0.00036 -0.48747 0.52328"/>
+            <parent link="base_link"/>
+            <child link="base_arm_link"/>
+        </joint>
+
+        <link name="box_base_link">
+            <collision name="base_car_collision">
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                <box size="1.75000 1.60000 0.09330"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="20.00000"/>
+                <inertia 
+                ixx="5.38119" ixy="0.00000" ixz="-0.00000" 
+                iyy="3.21104" iyz="-0.00000" 
+                izz="6.96127"/>
+            </inertial>
+
+            <visual name="base_car">
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <box size="1.75000 1.60000 0.09330"/>
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.6 0.6 0.6 1.0"/>
+                </material>
+            </visual>
+
+        </link>
+
+
+        <joint name="box_base_link_joint" type="fixed">
+            <origin rpy="0 0 1.57080" xyz="0.00582 1.00896 -0.26423"/>
+            <parent link="base_link"/>
+            <child link="box_base_link"/>
+        </joint>
+
+
+        <link name="left_arm_link">
+            <collision name="base_car_collision">
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                <mesh filename="package://rover_description/meshes/dae/Cube.018.dae" scale="0.82756 0.05994 0.30311"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="20.00000"/>
+                <inertia 
+                ixx="0.23899" ixy="0.00049" ixz="0.00162" 
+                iyy="1.25923" iyz="-0.02509" 
+                izz="1.06138"/>
+            </inertial>
+
+            <visual name="left_arm">
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="Material"/>
+                <geometry>
+                    <mesh filename="package://rover_description/meshes/dae/Cube.018.dae" scale="0.82756 0.05994 0.30311"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+
+        <joint name="left_arm_link_joint" type="fixed">
+            <origin rpy="0.00000 0.00000 0" xyz="0.97102 0.35887 -0.24256"/>
+            <parent link="base_link"/>
+            <child link="left_arm_link"/>
+        </joint>
+
+        <link name="right_arm_link">
+            <collision name="base_car_collision">
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                <mesh filename="package://rover_description/meshes/dae/Cube.015.dae" scale="0.82756 0.05994 0.30311"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="20.00000"/>
+                <inertia 
+                ixx="0.23899" ixy="0.00049" ixz="0.00162" 
+                iyy="1.25923" iyz="-0.02509" 
+                izz="1.06138"/>
+            </inertial>
+
+            <visual name="right_arm">
+                <material name="Material"/>
+                <geometry>
+                    <mesh filename="package://rover_description/meshes/dae/Cube.015.dae" scale="0.82756 0.05994 0.30311"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+
+        <joint name="right_arm_link_joint" type="fixed">
+            <origin rpy="0.00000 0.00000 0" xyz="-0.97592 0.35887 -0.24255"/>
+            <parent link="base_link"/>
+            <child link="right_arm_link"/>
+        </joint>
+
+        <xacro:macro name="box_wall_link" params="name size_x size_y size_z mass">
+
+            <link name="${name}_link">
+                <visual>
+                    <origin rpy="0 0 0" xyz="0 0 0"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                    <material name="gray">
+                        <color rgba="0.6 0.6 0.6 1.0"/>
+                    </material>
+                </visual>
+
+                <collision>
+                    <origin rpy="0 0 0" xyz="0 0 0"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                </collision>
+
+                <inertial>
+                    <mass value="${mass}"/>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <inertia 
+                        ixx="${(mass*(size_y*size_y+size_z*size_z))/12}" ixy="0.0"  ixz="0.0"
+                        iyy="${(mass*(size_x*size_x+size_z*size_z))/12}" iyz="0.0"
+                        izz="${(mass*(size_x*size_x+size_y*size_y))/12}"/>
+                </inertial>
+            </link>
+        </xacro:macro>
+
+        <xacro:macro name="box_wall_link_joint" params="name xyz rpy parent_link">
+        <joint name="${name}_link_joint" type="fixed">
+            <origin rpy="${rpy}" xyz="${xyz}"/>
+            <parent link="${parent_link}"/>
+            <child link="${name}_link"/>
+        </joint>
+        </xacro:macro>
+
+
+
+        <xacro:box_wall_link name="left_wall" size_x="0.06207" size_y="1.750000" size_z="0.60000" mass="20.00000"/>
+        <xacro:box_wall_link_joint name="left_wall" xyz="0.78876 1.00572 0.06207" rpy="0 0 0" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="right_wall" size_x="0.06207" size_y="1.750000" size_z="0.60000" mass="20.00000"/>
+        <xacro:box_wall_link_joint name="right_wall" xyz="-0.78413 1.00572 0.06207" rpy="0 0 0" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="back_wall" size_x="1.56700" size_y="0.06207" size_z="0.60000" mass="20.00000"/>
+        <xacro:box_wall_link_joint name="back_wall" xyz="-0.00245 1.84494 0.06207" rpy="0 0 0" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="right_cube_head" size_x="0.1" size_y="1.2" size_z="0.1" mass="5.0"/>
+        <xacro:box_wall_link_joint name="right_cube_head" xyz="-0.77909 -0.48947 0.43260" rpy="0.00000 0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="front_cube_head" size_x="1.5" size_y="0.1" size_z="0.1" mass="5.0"/>
+        <xacro:box_wall_link_joint name="front_cube_head" xyz="0.00594 -1.03621 0.43260" rpy="0.00000 0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="left_cube_head" size_x="0.1" size_y="1.2" size_z="0.1" mass="5.0"/>
+        <xacro:box_wall_link_joint name="left_cube_head" xyz="0.77994 -0.48947 0.43260" rpy="0.00000 0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:box_wall_link name="top_head" size_x="1.45" size_y="1" size_z="0.1" mass="5.0"/>
+        <xacro:box_wall_link_joint name="top_head" xyz="0.00036 -0.48747 0.43468" rpy="0.00000 0.00000 0.00000" parent_link="base_link"/>
+
+
+        
+        <xacro:macro name="cylinder_link" params="name ">
+
+            <link name="${name}_link">
+                <visual name="${name}">
+                    <origin rpy="1.57080 0.00000 -1.57080" xyz="-0.00000 0.00000 -0.00000"/>
+                    <geometry>
+                        <cylinder radius="0.1" length="0.3"/>
+                    </geometry>
+                    <material name="gray">
+                        <color rgba="0.6 0.6 0.6 1.0"/>
+                    </material>
+                </visual>
+
+                <collision>
+                    <origin rpy="1.57080 0.00000 -1.57080" xyz="-0.00000 0.00000 -0.00000"/>
+                    <geometry>
+                        <cylinder radius="0.1" length="0.3"/>
+                    </geometry>
+                </collision>
+
+                <inertial>
+                    <mass value="5"/>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <inertia ixx="0.88021" ixy="0.00000" ixz="0.00000" iyy="0.42083" iyz="0.00000" izz="1.29271"/>
+                    <origin rpy="0.00000 0.00000 0.00000" xyz="0 0 0"/>
+                    <mass value="5.00000"/>
+                </inertial>
+            </link>
+        </xacro:macro>
+
+        <xacro:macro name="cylinder_link_joint" params="name xyz rpy parent_link">
+        <joint name="${name}_link_joint" type="fixed">
+            <origin rpy="${rpy}" xyz="${xyz}"/>
+            <parent link="${parent_link}"/>
+            <child link="${name}_link"/>
+        </joint>
+        </xacro:macro>
+
+        <xacro:cylinder_link name="front_left_cylinder"/>
+        <xacro:cylinder_link_joint name="front_left_cylinder" xyz="1.10695 -0.98106 -0.64880" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:cylinder_link name="left_cylinder"/>
+        <xacro:cylinder_link_joint name="left_cylinder" xyz="1.12188 0.34836 -0.64379" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:cylinder_link name="back_left_cylinder"/>
+        <xacro:cylinder_link_joint name="back_left_cylinder" xyz="1.12188 1.71195 -0.64379" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+
+        <xacro:cylinder_link name="front_right_cylinder"/>
+        <xacro:cylinder_link_joint name="front_right_cylinder" xyz="-1.11185 -0.98720 -0.64880" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:cylinder_link name="right_cylinder"/>
+        <xacro:cylinder_link_joint name="right_cylinder" xyz="-1.12678 0.34836 -0.64379" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+        <xacro:cylinder_link name="back_right_cylinder"/>
+        <xacro:cylinder_link_joint name="back_right_cylinder" xyz="-1.12678 1.71195 -0.64379" rpy="0.00000 -0.00000 0.00000" parent_link="base_link"/>
+
+    
+    </xacro:macro>
+
+</robot>
+
+
+
+
+

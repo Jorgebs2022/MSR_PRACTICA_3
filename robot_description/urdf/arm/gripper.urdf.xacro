@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <xacro:macro name="arm_gripper" params="prefix">
+
+    <link name="base_gripper_link">
+            <collision name="base_gripper_collision">
+                <origin rpy="${PI/2} 0 ${PI/2}" xyz="0 0.00000 0"/>
+                <geometry>
+                <box size="0.20000 1.00000 0.05000"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="20.00000"/>
+                <inertia 
+                ixx="5.38119" ixy="0.00000" ixz="-0.00000" 
+                iyy="3.21104" iyz="-0.00000" 
+                izz="6.96127"/>
+            </inertial>
+
+            <visual name="base_gripper">
+                <origin rpy="${PI/2} 0 ${PI/2}" xyz="0 0.00000 0"/>
+                <geometry>
+                    <box size="0.20000 1.00000 0.05000"/>
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.6 0.6 0.6 1.0"/>
+                </material>
+            </visual>
+
+        </link>
+
+
+        <joint name="base_gripper_link_joint" type="revolute">
+            <origin rpy="0 0 0" xyz="-1.47674 0.00000 0"/>
+            <parent link="extension_cylinder_link"/>
+            <child link="base_gripper_link"/>
+            <limit lower="-3.14000" upper="3.14000" effort="1000.00000" velocity="100.00000"/>
+        </joint>
+
+        <xacro:macro name="gripper_hand_link" params="name size_x size_y size_z mass">
+
+            <link name="${name}_link">
+                <visual>
+                    <origin xyz="0 0 0" rpy="0 0 ${PI/2}"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                    <material name="gray">
+                        <color rgba="0.6 0.6 0.6 1.0"/>
+                    </material>
+                </visual>
+
+                <collision>
+                     <origin xyz="0 0 0" rpy="0 0 ${PI/2}"/>
+                    <geometry>
+                        <box size="${size_x} ${size_y} ${size_z}"/>
+                    </geometry>
+                </collision>
+
+                <inertial>
+                    <mass value="${mass}"/>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <inertia 
+                        ixx="${(mass*(size_y*size_y+size_z*size_z))/12}" ixy="0.0"  ixz="0.0"
+                        iyy="${(mass*(size_x*size_x+size_z*size_z))/12}" iyz="0.0"
+                        izz="${(mass*(size_x*size_x+size_y*size_y))/12}"/>
+                </inertial>
+            </link>
+        </xacro:macro>
+
+        <xacro:macro name="gripper_hand_link_joint" params="name xyz rpy parent_link up">
+        <joint name="${name}_link_joint" type="prismatic">
+            <origin rpy="${rpy}" xyz="${xyz}"/>
+            <parent link="${parent_link}"/>
+            <child link="${name}_link"/>
+            <limit lower="0.00000" upper="${up}" effort="1000.00000" velocity="100.00000"/>
+        </joint>
+        </xacro:macro>
+
+        <xacro:gripper_hand_link name="right_hand" size_x="0.20000" size_y="0.05000" size_z="0.20000" mass="1.00000"/>
+        <xacro:gripper_hand_link_joint name="right_hand" xyz="-0.12522 0.00000 0.47551" rpy="0 ${PI/2} 0" parent_link="base_gripper_link" up="0.50000"/>
+
+        <xacro:gripper_hand_link name="left_hand" size_x="0.20000" size_y="0.05000" size_z="0.20000" mass="1.00000"/>
+        <xacro:gripper_hand_link_joint name="left_hand" xyz="-0.12522 0.00000 -0.47551" rpy="0 ${-PI/2} 0" parent_link="base_gripper_link" up="0.50000"/>
+
+
+  </xacro:macro>
+
+</robot>
